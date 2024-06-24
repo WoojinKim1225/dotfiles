@@ -1,0 +1,4 @@
+eif status is-interactive
+    # Commands to run in interactive sessions can go here
+    set -U fish_user_paths ~/.config/emacs/bin $fish_user_paths
+end
