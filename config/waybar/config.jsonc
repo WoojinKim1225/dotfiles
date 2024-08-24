@@ -1,0 +1,233 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+
+    "position": "top",
+    "height": 24, // Waybar height (to be removed for auto height)
+    "spacing": 0, // Gaps between modules (4px)
+    "margin": 0,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "mpris",
+        "mpd",
+        "custom/fcitx",
+        "cpu",
+        "memory",
+        "disk",
+        "temperature",
+        "battery",
+        "network",
+        "bluetooth",
+        "pulseaudio",
+
+    ],
+    // Modules configuration
+    "hyprland/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "persistent-workspaces": {
+           "*": 10
+         },
+         "format": " {name} ",
+    },
+    "hyprland/window": {
+      "format": " {} ",
+      "rewrite":{
+        "(.*) - fish": "> [$1]"
+      },
+      "seperate-outputs": true
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "custom/fcitx": {
+        "exec-on-event" : true,
+        "format": "│{}│",
+        "exec" : "~/.config/waybar/fcitx.sh",
+        "on-click": "fcitx5-remote -t",
+        "restart-interval": 1,
+    },
+    "mpd": {
+        "format": "{title} - {artist}",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{repeatIcon}{randomIcon}{singleIcon}{consumeIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": "c"
+        },
+        "random-icons": {
+            "on": "z"
+        },
+        "repeat-icons": {
+            "on": "r"
+        },
+        "single-icons": {
+            "on": "s"
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "mpc toggle"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a %d %b   %H:%M}"
+    },
+    "cpu": {
+        "format": " {usage}%│",
+        "tooltip": true,
+        "tooltip-format": "{usage}%"
+    },
+    "memory": {
+        "format": " {percentage}%│",
+        "tootip": true,
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G "
+    },
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}%│",
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon} {temperatureC}°C ",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "","", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "network": {
+        "format-wifi": " 󰤨",
+        "format-ethernet": " ",
+        "tooltip-format": "{ifname} via {gwaddr} ({bandwidthUpBits} | {bandwidthDownBits})",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "",
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-bluetooth-muted": "{icon}",
+        "format-muted": "{format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            // "headphone": "",
+            // "hands-free": "󱡏",
+            // "headset": "󱡏",
+            // "phone": "",
+            // "portable": "",
+            // "car": "",
+            "default": ["  ", "  ", "  "]
+        },
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc} {format_source}"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/power": {
+        "format": "   ",
+        "on-click": "wlogout"
+    },
+
+    "bluetooth": {
+        "format": "{icon}",
+        "format-icons": {
+            "enabled": " ",
+            "disabled": "   "
+        },
+        "on-click": "$HOME/.config/waybar/wofi-bluetooth.sh"
+    },
+
+  "mpris": {
+    "format": "DEFAULT: {player_icon} {dynamic}",
+    "format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    // "ignored-players": ["firefox"]
+  }
+
+
+  
+   
+}
