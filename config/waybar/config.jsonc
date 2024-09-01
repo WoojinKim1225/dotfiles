@@ -16,8 +16,8 @@
         "clock"
     ],
     "modules-right": [
+        "custom/wallpaper",
         "mpris",
-        "mpd",
         "custom/fcitx",
         "cpu",
         "memory",
@@ -225,9 +225,12 @@
       "paused": "⏸"
     },
     // "ignored-players": ["firefox"]
+  },
+
+  "custom/wallpaper": {
+    "format": "a",
+    "on-click": "python $HOME/.config/waybar/ChangeWallpaper.py",
   }
-
-
   
    
 }

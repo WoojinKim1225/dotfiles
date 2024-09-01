@@ -4,10 +4,10 @@ import = [
 
 
 [window]
-opacity= 0.8
-padding = {x = 0, y = 0}
-decorations = "None"
-resize_increments = true
+  opacity= 0.8666666666666
+  padding = {x = 0, y = 0}
+  decorations = "None"
+  resize_increments = true
 
 [font]
 size = 12.0

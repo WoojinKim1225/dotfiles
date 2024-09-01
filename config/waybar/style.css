@@ -9,12 +9,13 @@
 }
 
 window#waybar {
-    background-color: rgba(40, 44, 52, 0.8);
+    background-color: rgba(40, 44, 52, 0.8666666666666);
     /*background-color: rgba(62, 68, 82, 0.98);*/
     /*background-color: rgba(97, 175, 239, 0.98);*/
     /* border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
     /*color: #282c3d;*/
     /*background-color: #282c34;*/
+  opacity: 1;
     color: #979eab;
     transition-property: background-color;
     transition-duration: .5s;
@@ -22,26 +23,23 @@ window#waybar {
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+    opacity: 0;
+}
+
+
+window#waybar.empty {
+  background-color: transparent;
+  color: #000000;
+  opacity: 1;
 }
 
 /*
-window#waybar.empty {
-    background-color: transparent;
-}
 window#waybar.solo {
     background-color: #FFFFFF;
 }
 */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
 
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
 
 button {
     /* Use box-shadow insteadborder so the text isn't offset */
@@ -55,7 +53,6 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    background-color: rgba(40, 44, 52, 0.98);
     box-shadow: inset 0 -3px #00ffffff;
 }
 
@@ -64,16 +61,14 @@ button:hover {
 }
 
 #workspaces button {
-    background-color: rgba(40, 44, 52, 0.98);
     padding: 0 0px;
     background-color: transparent;
     font-style: italic;
-    color: #979eab;
+    color: inherit;
 }
 
 #workspaces button:hover {
 
-    background-color: rgba(40, 44, 52, 0.98);
 }
 
 #workspaces button.urgent {
@@ -88,7 +83,10 @@ button:hover {
 #workspaces button.active {
     background-color: #31353f;
   font-weight: bold;
+
+    color: #979eab;
 }
+
 
 
 

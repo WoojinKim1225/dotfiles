@@ -1,0 +1,10 @@
+# GIMP action-history
+
+(history-item "filters-noise-rgb" 1)
+(history-item "image-new" 0)
+(history-item "layers-new" 0)
+(history-item "tools-zoom" 0)
+(history-item "filters-noise-hsv" 0)
+(history-item "file-quit" 1)
+
+# end of action-history
